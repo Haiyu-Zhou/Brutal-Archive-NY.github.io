@@ -35,3 +35,20 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("sort-architect").addEventListener("click", () => sortCatalog("architect"));
     document.getElementById("sort-date").addEventListener("click", () => sortCatalog("date"));
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    let rightSection = document.querySelector(".right-section");
+    let leftSection = document.querySelector(".left-section");
+    
+    let lastScrollTop = 0; // Variable to track the last scroll position
+
+    rightSection.addEventListener("scroll", function () {
+        let scrollProgress = rightSection.scrollTop;
+        
+        // Calculate how many times the right section has scrolled 50vh
+        let scrollIncrement = Math.floor(scrollProgress / (window.innerHeight * 0.5));
+
+        // Apply a translation to the left section for every 50vh scrolled on the right side
+        leftSection.style.transform = `translateY(-${scrollIncrement * 100}vh)`;
+    });
+});
